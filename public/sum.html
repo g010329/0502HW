@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW3</title>
+    
+</head>
+<body>
+    <div id="demo">
+        <p>give a number:</p>
+        <input id="num" type="text">
+        <button id="load" type="submit" onclick="sendAJAX()">enter</button>
+    </div>
+    <script>
+        function sendAJAX() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    document.getElementById('demo').innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open("GET",`http://localhost:3000/getData?number=${parseInt(document.getElementById("num").value)}`)
+            xhr.send();
+        };
+    </script>
+</body>
+</html>
